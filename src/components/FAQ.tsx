@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register ScrollTrigger
@@ -25,6 +25,27 @@ interface FAQItemProps {
 function FAQItem({ faq, isOpen, onToggle, index }: FAQItemProps) {
   const colors = ["#F28DEB", "#917ED9", "#72C1F2", "#F2B705"];
   const color = colors[index % colors.length];
+  const answerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!answerRef.current) return;
+
+    if (isOpen) {
+      gsap.to(answerRef.current, {
+        maxHeight: "1000px",
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    } else {
+      gsap.to(answerRef.current, {
+        maxHeight: 0,
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in"
+      });
+    }
+  }, [isOpen]);
 
   return (
     <div className="group relative">
@@ -69,9 +90,9 @@ function FAQItem({ faq, isOpen, onToggle, index }: FAQItemProps) {
 
         {/* Answer Content */}
         <div 
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          ref={answerRef}
+          className="overflow-hidden"
+          style={{ maxHeight: 0, opacity: 0 }}
         >
           <div className="px-6 md:px-8 pb-6 md:pb-8">
             <p className="text-base md:text-lg text-slate-700 font-red-hat-text leading-relaxed">
@@ -92,6 +113,37 @@ function FAQItem({ faq, isOpen, onToggle, index }: FAQItemProps) {
  */
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    // Set initial background color explicitly
+    gsap.set(sectionRef.current, {
+      backgroundColor: "#E8F4FD"
+    });
+
+    // Timeline: light blue to white when scrolling to bottom
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "bottom bottom",
+        end: "bottom bottom",
+        scrub: 1,
+        markers: false,
+      }
+    });
+
+    // Animate background color from light blue to white
+    tl.to(sectionRef.current, {
+      backgroundColor: "#FFFFFF",
+      duration: 1
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   const faqs = [
     {
@@ -141,9 +193,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="w-full py-48 relative overflow-hidden" style={{ backgroundColor: "#E8F4FD" }}>
-      
-      
+    <section ref={sectionRef} id="faq" className="w-full py-48 relative overflow-hidden" style={{ backgroundColor: "#E8F4FD" }}>
       <div className="relative max-w-6xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -169,7 +219,6 @@ export default function FAQ() {
             />
           ))}
         </div>
-
       </div>
     </section>
   );
