@@ -33,21 +33,7 @@ export default function Hero() {
             With CreatorLoop, your ideas become AI-powered visuals — whether it&apos;s a cinematic scene, a surreal artwork, or a 3D asset — fully owned by you, on-chain, and free from platform cuts.
           </p>
           
-          {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link 
-              href="#features"
-              className="inline-flex items-center justify-center px-8 py-4 bg-black text-white rounded-full font-medium hover:bg-black/90 transition-colors"
-            >
-              Get Started
-            </Link>
-            <Link 
-              href="#use-cases"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm text-black rounded-full font-medium hover:bg-white/90 transition-colors"
-            >
-              Learn More
-            </Link>
-          </div>
+          
         </div>
 
         {/* Right Column: Sample Grid */}
