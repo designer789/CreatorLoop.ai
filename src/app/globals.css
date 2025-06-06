@@ -1,15 +1,42 @@
 @import "tailwindcss";
 
+/**
+ * Theme Colors
+ * Defines the color palette for the entire application
+ * - background: Main background color (Warm White)
+ * - foreground: Main text color
+ * - primary: Primary brand color (时尚-1: Pink)
+ * - secondary: Secondary brand color (时尚-2: Purple)
+ * - accent: Accent color (时尚-3: Blue)
+ * - highlight: Highlight color (时尚-4: Yellow)
+ * - accent2: Secondary accent (时尚-5: Orange)
+ * - muted: Subtle background color
+ */
 :root {
-  --background: #ffffff;
+  --background: #faf6f1;
   --foreground: #171717;
+  --primary: #F28DEB;
+  --secondary: #917ED9;
+  --accent: #72C1F2;
+  --highlight: #F2B705;
+  --accent2: #F29F05;
+  --muted: #f3f4f6;
 }
 
+/**
+ * Theme Configuration
+ * Maps CSS variables to Tailwind theme values
+ * Used for consistent styling across components
+ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-highlight: var(--highlight);
+  --color-accent2: var(--accent2);
+  --color-muted: var(--muted);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +46,20 @@
   }
 }
 
+/**
+ * Base Styles
+ * Applies default styles to HTML elements
+ */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-red-hat-text), Arial, sans-serif;
+}
+
+/**
+ * Typography
+ * Defines font families for different text elements
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-red-hat-display), Arial, sans-serif;
 }
