@@ -19,11 +19,9 @@ interface FAQItemProps {
   };
   isOpen: boolean;
   onToggle: () => void;
-  index: number;
 }
 
-function FAQItem({ faq, isOpen, onToggle, index }: FAQItemProps) {
-  const colors = ["#F28DEB", "#917ED9", "#72C1F2", "#F2B705"];
+function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
   const answerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -214,7 +212,6 @@ export default function FAQ() {
               faq={faq}
               isOpen={openIndex === index}
               onToggle={() => handleToggle(index)}
-              index={index}
             />
           ))}
         </div>
