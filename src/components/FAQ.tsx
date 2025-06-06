@@ -24,7 +24,6 @@ interface FAQItemProps {
 
 function FAQItem({ faq, isOpen, onToggle, index }: FAQItemProps) {
   const colors = ["#F28DEB", "#917ED9", "#72C1F2", "#F2B705"];
-  const color = colors[index % colors.length];
   const answerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

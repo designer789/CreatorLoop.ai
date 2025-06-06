@@ -14,12 +14,11 @@ if (typeof window !== 'undefined') {
  */
 interface UtilityCardProps {
   title: string;
-  description?: string;
   icon: string;
   color: string;
 }
 
-function UtilityCard({ title, description, icon, color }: UtilityCardProps) {
+function UtilityCard({ title, icon, color }: UtilityCardProps) {
   return (
     <div className="group relative h-full">
       <div className="relative p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/30 transition-all duration-500 h-full flex flex-col">
@@ -216,7 +215,6 @@ export default function Tokenomics() {
               <UtilityCard
                 key={index}
                 title={utility.title}
-            
                 icon={utility.icon}
                 color={utility.color}
               />

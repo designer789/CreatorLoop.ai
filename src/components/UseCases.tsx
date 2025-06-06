@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -137,13 +137,13 @@ export default function UseCases() {
     setDragOffset(0);
   };
 
-  const handleDragMove = (clientX: number) => {
+  const handleDragMove = useCallback((clientX: number) => {
     if (!isDragging) return;
     const offset = clientX - dragStart;
     setDragOffset(offset);
-  };
+  }, [isDragging, dragStart]);
 
-  const handleDragEnd = () => {
+  const handleDragEnd = useCallback(() => {
     if (!isDragging) return;
     setIsDragging(false);
     
@@ -162,7 +162,7 @@ export default function UseCases() {
     }
     
     setDragOffset(0);
-  };
+  }, [isDragging, dragOffset, currentSlide, totalSlides]);
 
   // Mouse events
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -207,7 +207,7 @@ export default function UseCases() {
       document.removeEventListener('mousemove', handleGlobalMouseMove);
       document.removeEventListener('mouseup', handleGlobalMouseUp);
     };
-  }, [isDragging, dragStart, dragOffset, currentSlide, totalSlides]);
+  }, [isDragging, handleDragMove, handleDragEnd]);
 
   useEffect(() => {
     if (!trackerRef.current || !targetWrapperRef.current) return;
