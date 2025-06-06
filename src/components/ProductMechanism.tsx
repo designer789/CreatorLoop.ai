@@ -20,9 +20,9 @@ interface WorkflowCardProps {
 function WorkflowCard({ workflow }: WorkflowCardProps) {
   return (
     <div className="group relative h-full">
-      <div className="relative p-8 md:p-10 rounded-3xl bg-white backdrop-blur-xl border border-white/30 transition-all duration-700 h-full flex flex-col">
+      <div className="relative p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-white backdrop-blur-xl border border-white/30 transition-all duration-700 h-full flex flex-col">
         <div className="mb-4">
-          <h3 className="text-xl md:text-2xl font-[700] text-slate-900 font-red-hat-display leading-tight">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-[700] text-slate-900 font-red-hat-display leading-tight">
             {workflow.title}
           </h3>
         </div>
@@ -30,10 +30,10 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
         <div className="relative flex-1">
           {workflow.steps.map((step, stepIndex) => (
             <div key={stepIndex} className="relative">
-              <div className="flex items-center gap-4 py-2">
+              <div className="flex items-center gap-3 sm:gap-4 py-2">
                 <div className="relative flex-shrink-0">
                   <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
                     style={{ backgroundColor: workflow.color }}
                   >
                     {stepIndex + 1}
@@ -41,15 +41,15 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
                   
                   {stepIndex < workflow.steps.length - 1 && (
                     <div 
-                      className="absolute top-8 left-1/2 w-0.5 h-16 -translate-x-1/2"
+                      className="absolute top-7 sm:top-8 left-1/2 w-0.5 h-12 sm:h-16 -translate-x-1/2"
                       style={{ backgroundColor: workflow.color, opacity: 0.3 }}
                     ></div>
                   )}
                 </div>
                 
                 <div className="flex-1">
-                  <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/50 group-hover:bg-white/60 transition-all duration-300">
-                    <p className="text-base font-medium text-slate-800 font-red-hat-text">
+                  <div className="p-3 sm:p-4 rounded-xl bg-slate-50/80 border border-slate-200/50 group-hover:bg-white/60 transition-all duration-300">
+                    <p className="text-sm sm:text-base font-medium text-slate-800 font-red-hat-text">
                       {step}
                     </p>
                   </div>
@@ -60,7 +60,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
         </div>
         
         <div 
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{ backgroundColor: workflow.color }}
         ></div>
       </div>
@@ -170,25 +170,27 @@ export default function ProductMechanism() {
   ];
 
   return (
-    <section ref={sectionRef} className="w-full py-48 relative overflow-hidden" style={{ backgroundColor: "#72C1F2" }}>
-     
-      
-      <div className="relative max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+    <section ref={sectionRef} className="w-full py-24 sm:py-32 md:py-40 lg:py-48 relative overflow-hidden" style={{ backgroundColor: "#72C1F2" }}>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-24">
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-lg rounded-full mb-8 border border-white/20">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 animate-pulse"></div>
-            <span className="text-lg font-semibold font-red-hat-text text-slate-700">Technical Framework</span>
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 bg-white/80 backdrop-blur-lg rounded-full mb-4 sm:mb-6 md:mb-8 border border-white/20">
+            <div className="w-2 sm:w-2.5 md:w-3 h-2 sm:h-2.5 md:h-3 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 animate-pulse"></div>
+            <span className="text-sm sm:text-base md:text-lg font-semibold font-red-hat-text text-slate-700">Technical Framework</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-[900] text-slate-900 font-red-hat-display mb-8 leading-tight">
-            PRODUCT MECHANISM
-            <br />
-            <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-              & WORKFLOW
-            </span>
-          </h2>
-        
+          {/* Main Heading */}
+          <div className="space-y-2 sm:space-y-3 md:space-y-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-[900] text-slate-900 font-red-hat-display leading-[1.1] sm:leading-[1.1] md:leading-tight">
+              PRODUCT MECHANISM
+            </h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-[900] font-red-hat-display leading-[1.1] sm:leading-[1.1] md:leading-tight">
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+                & WORKFLOW
+              </span>
+            </h2>
+          </div>
         </div>
 
         {/* Workflows Flow Layout */}

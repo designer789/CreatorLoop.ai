@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * Hero Component
@@ -33,41 +34,76 @@ export default function Hero() {
           </p>
           
           {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 mt-8">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              href="/create" 
-              className="px-10 py-5 rounded-full bg-black text-white text-xl font-medium hover:opacity-90 transition-opacity text-center font-red-hat-text"
+              href="#features"
+              className="inline-flex items-center justify-center px-8 py-4 bg-black text-white rounded-full font-medium hover:bg-black/90 transition-colors"
             >
-              Start Creating
+              Get Started
             </Link>
             <Link 
-              href="/learn-more" 
-              className="px-10 py-5 rounded-full border-2 border-black hover:bg-black hover:text-white transition-colors text-center text-xl font-red-hat-text"
+              href="#use-cases"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/80 backdrop-blur-sm text-black rounded-full font-medium hover:bg-white/90 transition-colors"
             >
               Learn More
             </Link>
           </div>
         </div>
-        
-        {/* Right Column: Visual Grid */}
-        <div className="relative aspect-square w-full max-w-2xl mx-auto lg:max-w-none">
-          {/* Background Gradient Effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-3xl"></div>
-          {/* Art Sample Grid */}
-          <div className="relative w-full h-full grid grid-cols-2 grid-rows-2 gap-6 p-6">
-            <div className="rounded-2xl bg-[#F28DEB] overflow-hidden transition-transform hover:scale-105">
-              <div className="w-full h-full"></div>
-            </div>
-            <div className="rounded-2xl bg-[#917ED9] overflow-hidden transition-transform hover:scale-105">
-              <div className="w-full h-full"></div>
-            </div>
-            <div className="rounded-2xl bg-[#72C1F2] overflow-hidden transition-transform hover:scale-105">
-              <div className="w-full h-full"></div>
-            </div>
-            <div className="rounded-2xl bg-[#F2B705] overflow-hidden transition-transform hover:scale-105">
-              <div className="w-full h-full"></div>
-            </div>
+
+        {/* Right Column: Sample Grid */}
+        <div className="relative w-full aspect-square grid grid-cols-2 gap-4">
+          {/* Top Left: Image */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <Image
+              src="/images/p1.jpg"
+              alt="AI Generated Art Sample 1"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
           </div>
+
+          {/* Top Right: Video */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/images/video1.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          {/* Bottom Left: Video */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/images/video2.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          {/* Bottom Right: Image */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <Image
+              src="/images/p2.jpg"
+              alt="AI Generated Art Sample 2"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </div>
+
+          {/* Decorative Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent pointer-events-none"></div>
         </div>
       </div>
     </section>
